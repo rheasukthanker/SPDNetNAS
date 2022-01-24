@@ -54,9 +54,9 @@ Before training, you should create the sub-directories <b>"data"</b> and <b>"wei
 ### 2.2. Data<a name="Data"></a>
 Data prepration is done based on the setup you are using. The code is adapted to three setups:
 <ol>
-    <li><b>Radar:Drone Recognition</b>: 3000 SPD datapoints distributed among 3 classes (size 20 × 20)</li>
-    <li><b>HDMO5:Action Recognition</b>: 2083 SPD datapoints distributed among 117 classes (size 93×93)</li>
-    <li><b>AFEW:Emotion Recognition</b>: 1345 SPD datapoints distibuted among 7 classes (Image size 100x100)</li>
+    <li><b>Radar(Drone Recognition)</b>: 3000 SPD datapoints distributed among 3 classes (size 20 × 20)</li>
+    <li><b>HDMO5(Action Recognition)</b>: 2083 SPD datapoints distributed among 117 classes (size 93×93)</li>
+    <li><b>AFEW(Emotion Recognition)</b>: 1345 SPD datapoints distibuted among 7 classes (Image size 100x100)</li>
 </ol>    
 
 The multi-class data should be organized as a main folder called "ImageNet" for ImageNet setup or "cifar" for CIFAR setup. (regardless of the actual target data). The main folder should contain different sub-folders for different classes of the target data. The main folder then should be placed in "base_dir/data/"
