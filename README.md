@@ -162,11 +162,12 @@ Make sure to adjust the configuration in sample_ImageNet.sh / sample_cifar.sh ac
 
 ![Edgesandarchs](images/weights_and_archs.png)
 
-### Edge weight distribution and derived sparsemax architectures:
-
-![Edgesandarchs](images/weights_and_archs.png)
 ### Performance comparison of our SPDNetNAS against existing SPDNets and traditional NAS on drone, action and emotion recognition
 ![Mainresults](images/main_results.png)
+
+### Ablation studies:
+
+![Ablation](images/ablations.png)
 ## 6. Contact<a name="Contact"></a>
 For any questions, suggestions, or issues with the code, please contact Rhea Sukthanker at <a>rheasukthanker@gmail.com</a>.
 
