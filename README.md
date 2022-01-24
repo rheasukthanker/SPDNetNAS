@@ -158,13 +158,13 @@ bash sample.sh
 Make sure to adjust the configuration in sample_ImageNet.sh / sample_cifar.sh according to your experiments.
 
 ## 5. Results<a name="Results"></a>
-Generated images from 5 classes of Places365 only by learning the BN parameters:
+Edge weight distribution and derived sparsemax architectures:
 
-![Places365 Results](images/places.png)
+![Edgesandarchs](images/weights_and_archs.png)
 
 
 ## 6. Contact<a name="Contact"></a>
-For any questions, suggestions, or issues with the code, please contact Mohamad at <a>mshahbazi@vision.ee.ethz.ch</a>.
+For any questions, suggestions, or issues with the code, please contact Rhea Sukthanker at <a>rheasukthanker@gmail.com</a>.
 
 ## 7. How to Cite<a name="How-to-Cite"></a>
 If you find this project helpful, please consider citing us as follows:
