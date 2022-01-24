@@ -52,7 +52,7 @@ The base directory--which can be different from the code directory--will contain
 Before training, you should create the sub-directories <b>"data"</b> and <b>"weights"</b>. Then place the data and pretraining weights inside them accordingly. the sub-directories <b>"logs"</b> and <b>"samples"</b> will be created automatically during the training.
 
 ### 2.2. Data<a name="Data"></a>
-Data prepration is done based on the setup you are using. The code is adapted to two setups:
+Data prepration is done based on the setup you are using. The code is adapted to three setups:
 <ol>
     <li><b>Radar:Drone Recognition</b>: 3000 SPD datapoints distributed among 3 classes (size 20 × 20)</li>
     <li><b>HDMO5:Action Recognition</b>: 2083 SPD datapoints distributed among 117 classes (size 93×93)</li>
@@ -68,10 +68,10 @@ base_dir/data/cifar/[class_1, ..., class_n]
 ```
 Below you can find the datasets used in our experiments:
 <ul>
-    <li><a href="http://data.csail.mit.edu/places/places365/train_large_places365standard.tar">Places356</a>: 5 classes (Alley, Arch, Art Gallery, Auditorium,
-Ballroom) are selected and down-sampled to 500 images per class</li>
-    <li><a href="https://vcla.stat.ucla.edu/people/zhangzhang-si/HiT/exp5.html">Animal Face</a>: The class "Natural" is excluded in our experiments.</li>
-    <li><a href="https://github.com/knjcode/cifar2png">CIFAR100</a></li>
+    <li><a href="https://drive.google.com/file/d/1Wk4Ie8S164t7n5PFzAnlVYPwjjCDG-p1/view?usp=sharing">RADAR</a>: This dataset’s synthetic setting is composed of radar signals distributed into 3 classes, where each signal is split into windows of length 20, resulting in a 20x20 covariance matrix for each window. </li>
+    <li><a href="https://drive.google.com/file/d/1WtbpuKuB3vwp4vtfTWvJi05hBkfSvNSu/view?usp=sharing">HDM05</a>: The dataset has 2083 SPD matrices distributed amongst  117 action classes</li>
+    <li><a href="https://drive.google.com/file/d/1oQuom9dGKpFNhBSj1HEyIZ-0VPtCT_Vo/view">AFEW</a>:This dataset has 1345 videos
+of facial expressions classified into 7 distinct classes i.e. angry, fear, disgust, surprise, neutral, happy and sad</li>
 </ul>
 
 Then, to pre-calulate the inception momentums of the target dataset for FID calculation:
