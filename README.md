@@ -168,8 +168,15 @@ Make sure to adjust the configuration in sample_ImageNet.sh / sample_cifar.sh ac
 ### Ablation studies:
 
 ![Ablation](images/ablations.png)
+
+
+### Convergence Analysis:
+
+![Convergence](images/convergence_curves.png)
 ## 6. Contact<a name="Contact"></a>
 For any questions, suggestions, or issues with the code, please contact Rhea Sukthanker at <a>rheasukthanker@gmail.com</a>.
+
+
 
 ## 7. How to Cite<a name="How-to-Cite"></a>
 If you find this project helpful, please consider citing us as follows:
