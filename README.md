@@ -16,17 +16,11 @@ for an efficient SPD cell design. Further, we model our new NAS problem with a o
 2. [Prepration](#Prepration)
     1. [Directories](#Directories)
     2. [Data](#Data)
-    3. [Pretrained Weights](#Weights)
 3. [Training](#Training)
-    1. [Launch the Training](#launch)
-    2. [Important Training Parameters](#params)
-    3. [Training Stages](#stage)
-5. [Evaluation](#Evaluation)
-    1. [Metrics](#Metrics)
-    2. [Final Evaluation](#Final)
-6. [Results](#Results)
-7. [Contact](#Contact)
-8. [How to Cite](#How-to-Cite)
+    1. [Searching + Training and Evaluation](#launch)
+4. [Results](#Results)
+5. [Contact](#Contact)
+6. [How to Cite](#How-to-Cite)
 
 ## 1. Installation & Dependencies<a name="Dependencies"></a>
 The code has been tested with Python 3.6 and Pytorch 1.0.1.
@@ -34,39 +28,29 @@ The code has been tested with Python 3.6 and Pytorch 1.0.1.
 
 To install the dependencies:
 ```bash
+conda create --name py37 python=3.7
 pip install -r requirements.txt
 ```
 
 ## 2. Preparation<a name="Prepration"></a>
 
 ### 2.1. Directories<a name="Directories"></a>
-The base directory--which can be different from the code directory--will contain the following sub-directories:
-| Path | Description
-| :--- | :----------
-| base_dir | The base directory containing your data, weights, logs, and generated samples
-| &ensp;&ensp;&boxvr;&nbsp; data | Contains the training data
-| &ensp;&ensp;&boxvr;&nbsp; weights | Contains the pretraining and training weights
-| &ensp;&ensp;&boxvr;&nbsp; logs | Contains the training logs
-| &ensp;&ensp;&boxur;&nbsp; samples | Contains the saved images during evaluation
+Our code is based upon a <b> DARTS </b> style implementation. The code for darts i available here <a href=https://github.com/quark0/darts> darts</a>
+The root directory contains the models and the training files. 
 
-Before training, you should create the sub-directories <b>"data"</b> and <b>"weights"</b>. Then place the data and pretraining weights inside them accordingly. the sub-directories <b>"logs"</b> and <b>"samples"</b> will be created automatically during the training.
+The root folder contains a folder called <b> data </b> where all the datasets are saved. The datasets can be downloaded from the links below. 
+
+The <b>Code</b> folder contains the<a href="https://github.com/Open-Debin/Emotion-FAN">Emotion-FAN</a> model's code which is the pretrained model used in our experiments for emotion-recognition (AFEW). Download the pretrained <a href="https://github.com/Open-Debin/Emotion-FAN">Emotion-FAN</a> model from its repository and place it in the root directory.  
 
 ### 2.2. Data<a name="Data"></a>
-Data prepration is done based on the setup you are using. The code is adapted to three setups:
+Data preparation is done based on the setup you are using. The code is adapted to three setups:
 <ol>
     <li><b>Radar(Drone Recognition)</b>: 3000 SPD datapoints distributed among 3 classes (size 20 × 20)</li>
     <li><b>HDMO5(Action Recognition)</b>: 2083 SPD datapoints distributed among 117 classes (size 93×93)</li>
     <li><b>AFEW(Emotion Recognition)</b>: 1345 SPD datapoints distibuted among 7 classes (Image size 100x100)</li>
 </ol>    
 
-The multi-class data should be organized as a main folder called "ImageNet" for ImageNet setup or "cifar" for CIFAR setup. (regardless of the actual target data). The main folder should contain different sub-folders for different classes of the target data. The main folder then should be placed in "base_dir/data/"
-```bash
-base_dir/data/ImageNet/[class_1, ..., class_n]
-```
-```bash
-base_dir/data/cifar/[class_1, ..., class_n]
-```
-Below you can find the datasets used in our experiments:
+We use the Radar and HDM05 datasets directly from the <a href="https://proceedings.neurips.cc/paper/2019/file/6e69ebbfad976d4637bb4b39de261bf7-Supplemental.zip">SPDNetBN</a>. While for the AFEW2014 we use the raw images below. Below you can find and download the datasets used in our experiments:
 <ul>
     <li><a href="https://drive.google.com/file/d/1Wk4Ie8S164t7n5PFzAnlVYPwjjCDG-p1/view?usp=sharing">RADAR</a>: This dataset’s synthetic setting is composed of radar signals distributed into 3 classes, where each signal is split into windows of length 20, resulting in a 20x20 covariance matrix for each window. </li>
     <li><a href="https://drive.google.com/file/d/1WtbpuKuB3vwp4vtfTWvJi05hBkfSvNSu/view?usp=sharing">HDM05</a>: The dataset has 2083 SPD matrices distributed amongst  117 action classes</li>
@@ -74,91 +58,30 @@ Below you can find the datasets used in our experiments:
 of facial expressions classified into 7 distinct classes i.e. angry, fear, disgust, surprise, neutral, happy and sad</li>
 </ul>
 
-Then, to pre-calulate the inception momentums of the target dataset for FID calculation:
+Note the <b>data/</b> folder contains all the datsets and is placed in the root folder.
 
-```bash
-bash  prepare_data
-```
-
-Note 1: The path to the main folder of the dataset should be modified in the data prepration scripts using "--data_root".
-Note2: For other setups other than ImageNet and CIFAR, you need to adapt the data-specific configuraion (type of the data loader, image size, root folder name, ...)
-
-
-### 2.3. Pretrained Weights<a name="Weights"></a>
-
-Before training, BigGAN's pretrained weights should be placed in the sub-directory "weights" of the base directory.
-
-For BigGAN on ImageNet, you can use the [pretrained weights](https://github.com/ajbrock/BigGAN-PyTorch#pretrained-models) provided by the BigGAN's authors. In this project, we have used the [main checkpoint](https://drive.google.com/file/d/1nAle7FCVFZdix2--ks0r5JBkFnKw8ctW/view).
-
-If you want to use other datasets (e.g. CIFAR10/100) as the pretraining dataset, you can first train the [BigGAN](https://github.com/ajbrock/BigGAN-PyTorch) on the desired dataset, and then, use the pretrained weights for cGANTransfer.
 
 ## 3. Training<a name="Training"></a>
 ### 3.1. Launch the Training<a name="launch"></a>
-To launch the training on your target data:
+To launch the search followed by training and evaluation for the Radar datset:
 
-```bash
-bash train.sh
+```python
+python -u train_spd_search_radar_sparsemax.py --unrolled --epochs 100  "$@"
+python -u train_spd_radar.py --arch radar_sparsemax "$@"
 ```
 
-In the experimetns conducted in the paper, for the ImageNet backbone, we trained the model with the batch size of 256 using 8 V100 (16G) GPUs. For the CIFAR experiments, the model is trained with the batch size of 50  using one V100 (16G) GPU.
-
-### 3.2. Important Training Parameters<a name="params"></a>
-Some of the configuraions in  scripts "train_ImageNet.sh" and "train_cifar.sh" need to be set according to your experiments. Some of the important parameters are:
-| Parameter | Description
-| :---- | :----------
-| --base_dir | The base directory containing your data, weights, logs, and generated samples
-| --experiment_name | The name of the experiment you are going to run (will be generated automatically if nothing is passed)
-| --batch_size | The size of the training batch
-| --stage | The stage of the training ["BN", "FT"] (Details in Sec. 3.3 of this README file).
-| --n_class | The number of target classes
-| --n_pretrain_class | The number of pretrained classes
-| --resume | If used, weights are loaded from the last checkpoint. Otherwise, pretrained weights are loaded
-| --load_weights | The suffix of the checkpoint, in case of loading a specific checkpoint
-| --res_l2_scale | The degrees of l2 regularization (details in section 4.3 of the paper)
-| --comb_l1_scale | The degrees of l1 regularization (details in section 4.3 of the paper)
-
-Make sure to understand the configuration used in the scripts and their default values, by reading their descriptions in "utils.py"
-
-### 3.3. Training Stages<a name="stage"></a>
-The training is assumed to start from a pre-trained network, and can be done in two stages.
-
-In the first stage (BN) , only the batch normalization (BN) parameters of the target classes are learned using transfering knowledge from pre-trained classes (see the paper for details). To train in this mode, set the value flag "--stage" to "BN" in the training script.
-
-In addition to the first stage, an extra fine-tuning stage is also possible, in which the whole network (including the obtained BN prameters of the target data) is fine-tuned on target dataset. To enable fine-tuning, do the following steps:
-<ul>
-    <li>Set the value flag "--stage" to "FT" in the training script</li>
-    <li>Use the value flag "--resume" in the training script</li>
-    <li>Specify the suffix of the checkpoints for fine-tuning using "--load_weights" (E.g. "best1" for state_dict_best1.pth)</li>
-</ul>
-
-Note: To use the best model best on the evaluation saved during the training, pass the value "best#i" to the flag "--load_weights". #i is the number the saved best model.
-
-
-
-
-## 4. Evaluation<a name="Evaluation"></a>
-
-### 4.1. Evaluation Metrics<a name="Metrics"></a>
-The main evaluation metrics used in this project are Frechet Inception Distance (FID) and Kernel Maximum Mean Discrepancy (KMMD). Inception score (IS) is also included in the code.
-
-FID and IS are calculated during the training using the Pytorch implementation provided by [BigGAN](https://github.com/ajbrock/BigGAN-PyTorch).
-
-For KMMD, the default implementation provided by [GAN Metrics](https://github.com/xuqiantong/GAN-Metrics) is used (Gaussian kernel with sigma=1).
-
-KMMD calculation is deactivated by default to avoid memory errors. To activate the KMMD calculation, use the flag "--kmmd" in the script and reduce the number of generated samples used for evaluation using "--num_inception_images" (default=50000. We were able to avoid memory errors by setting it to 25000). 
-
-<b>Note 1</b>: Reducing the number of generated samples might make the FID calculation a bit less accurate.
-
-<b>Note 2</b>: For very small datasets, FID score becomes unstable, since the inception statistics  of the real data cannot be estimated accurately.
-
-### 4.2. Final Evaluation<a name="Final"></a>
-In addition to the evaluation during the training, you can evaluate your final model using the following commands:
-```bash
-bash sample.sh
+To launch the search followed by training and evaluation for the HDM05 datset:
+```python
+python -u train_spd_search_hdm05_sparsemax.py --unrolled --epochs 300 "$@"
+python -u train_spd_hdm05.py --arch hdm05_sparsemax "$@"
 ```
-Make sure to adjust the configuration in sample_ImageNet.sh / sample_cifar.sh according to your experiments.
+For the afew dataset we directly transfer the searched architectures from Radar and HDMO5 datasets. Launch the training and evaluation using the command below:
+```python
+python -u train_spd_afew.py --arch radar_sparsemax "$@"
+python -u train_spd_afew.py --arch hdm05_sparsemax "$@"
+```
 
-## 5. Results<a name="Results"></a>
+## 4. Results<a name="Results"></a>
 ### Edge weight distribution and derived sparsemax architectures:
 
 ![Edgesandarchs](images/weights_and_archs.png)
@@ -174,7 +97,7 @@ Make sure to adjust the configuration in sample_ImageNet.sh / sample_cifar.sh ac
 ### Convergence Analysis:
 
 ![Convergence](images/convergence_curves.png)
-## 6. Contact<a name="Contact"></a>
+## 5. Contact<a name="Contact"></a>
 For any questions, suggestions, or issues with the code, please contact Rhea Sukthanker at <a>rheasukthanker@gmail.com</a>.
 
 
