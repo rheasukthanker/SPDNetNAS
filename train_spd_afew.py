@@ -270,6 +270,7 @@ def main():
     _structure = Model.resnet18_AT(at_type=at_type)
     _parameterDir = 'Resnet18_FER+_pytorch.pth.tar'
     model_pre = load_materials.LoadParameter(_structure, _parameterDir)
+    #Freeze model
     for p in model_pre.parameters():
         p.requires_grad = False
     print(
@@ -310,7 +311,7 @@ def train(train_queue, model, model_pre, criterion, optimizer):
         # print(save_manifoldnet.shape)
         target = Variable(target)  #.cuda(async=True)
         optimizer.zero_grad()
-        print(frame_features.shape)
+        #print(frame_features.shape)
         logits = model(frame_features.double())
         loss = criterion(logits, target)
         #if args.auxiliary:

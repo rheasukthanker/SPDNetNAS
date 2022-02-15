@@ -4,8 +4,6 @@ import time
 import glob
 import numpy as np
 import torch
-import time
-from gumbel_softmax import gumbel_softmax
 import utils
 import logging
 import argparse
@@ -247,14 +245,14 @@ def main():
         logging.info('genotype = %s', genotype)
         n = model.alphas_reduce[0, :].shape[0]
         #for i in range(model.alphas_reduce.shape[0]):
-        print(use_sparsemax_as_convex_layer(model.alphas_normal, n))
-        print(use_sparsemax_as_convex_layer(model.alphas_reduce, n))
-        print(
-            torch.sum(use_sparsemax_as_convex_layer(model.alphas_normal, n),
-                      dim=1))
-        print(
-            torch.sum(use_sparsemax_as_convex_layer(model.alphas_reduce, n),
-                      dim=1))
+        #print(use_sparsemax_as_convex_layer(model.alphas_normal, n))
+        #print(use_sparsemax_as_convex_layer(model.alphas_reduce, n))
+        #print(
+        #    torch.sum(use_sparsemax_as_convex_layer(model.alphas_normal, n),
+        #              dim=1))
+        #print(
+        #    torch.sum(use_sparsemax_as_convex_layer(model.alphas_reduce, n),
+        #              dim=1))
         # training
         train_acc, train_obj = train(train_queue, valid_queue, model,
                                      architect, criterion, optimizer, analyser,
@@ -313,8 +311,8 @@ def train(train_queue, valid_queue, model, architect, criterion, optimizer,
         nn.utils.clip_grad_norm(model.parameters(), args.grad_clip)
         optimizer.step()
         n = model.alphas_reduce[0, :].shape[0]
-        print(use_sparsemax_as_convex_layer(model.alphas_normal, n))
-        print(use_sparsemax_as_convex_layer(model.alphas_reduce, n))
+        #print(use_sparsemax_as_convex_layer(model.alphas_normal, n))
+        #print(use_sparsemax_as_convex_layer(model.alphas_reduce, n))
         temp = min(temp * decay, temp_min)
         prec1, prec2 = utils.accuracy(logits, target, topk=(1, 2))
         objs.update(loss.data, n)
