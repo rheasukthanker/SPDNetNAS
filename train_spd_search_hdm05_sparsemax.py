@@ -14,7 +14,7 @@ import torchvision.datasets as dset
 import torch.backends.cudnn as cudnn
 from torch.utils import data
 from torch.autograd import Variable
-from model_spdnet_v0_search_sparsemax import Network
+from model_spd_v0_hdm05_search_sparsemax import Network
 from architect import Architect
 import random
 import torch as th
