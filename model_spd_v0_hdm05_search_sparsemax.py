@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from operations_spd_v0_sparsemax import *
+from operations_spd_v0_hdm05_sparsemax import *
 from torch.autograd import Variable
 from genotypes import PRIMITIVES_SPDNet_v0 as PRIMITIVES
 from genotypes import Genotype

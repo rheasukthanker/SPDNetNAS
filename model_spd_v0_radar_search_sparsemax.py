@@ -7,7 +7,6 @@ from genotypes import PRIMITIVES_SPDNet_v0 as PRIMITIVES
 from genotypes import Genotype
 import nn as nn_spd
 import functional
-from gumbel_softmax import gumbel_softmax
 import cplx.nn as nn_cplx
 import torch
 import numpy as np

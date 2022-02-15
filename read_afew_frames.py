@@ -8,7 +8,7 @@ import cv2
 class ReadAFEWTrain:
 
     def __init__(self):
-        self.add = ""
+        self.add = "data/"
         self.filename = self.add + "AFEW2014/list_train.txt"
         self.base = self.add + "AFEW2014/Train/"
         self.labels_dict = {
@@ -51,7 +51,7 @@ class ReadAFEWVal:
     def __init__(self):
         self.filename = "AFEW2014/list_eval.txt"
         self.base = "AFEW2014/Val/"
-        self.add = ""
+        self.add = "data/"
         self.filename = self.add + self.filename
         self.base = self.add + self.base
         self.labels_dict = {
