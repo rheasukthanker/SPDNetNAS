@@ -40,7 +40,7 @@ The root directory contains the models and the training files.
 
 The root folder contains a folder called <b> data </b> where all the datasets are saved. The datasets can be downloaded from the links below. 
 
-The <b>Code</b> folder contains the<a href="https://github.com/Open-Debin/Emotion-FAN">Emotion-FAN</a> model's code which is the pretrained model used in our experiments for emotion-recognition (AFEW). Download the pretrained <a href="https://github.com/Open-Debin/Emotion-FAN">Emotion-FAN</a> model from its repository and place it in the root directory.  
+The <b>Code</b> folder contains the <a href="https://github.com/Open-Debin/Emotion-FAN">Emotion-FAN</a> model's code which is the pretrained model used in our experiments for emotion-recognition (AFEW). Download the pretrained <a href="https://github.com/Open-Debin/Emotion-FAN">Emotion-FAN</a> model from its repository and place it in the root directory.  
 
 ### 2.2. Data<a name="Data"></a>
 Data preparation is done based on the setup you are using. The code is adapted to three setups:
@@ -98,7 +98,7 @@ python -u train_spd_afew.py --arch hdm05_sparsemax "$@"
 
 ![Convergence](images/convergence_curves.png)
 ## 5. Contact<a name="Contact"></a>
-For any questions, suggestions, or issues with the code, please contact Rhea Sukthanker at <a>rheasukthanker@gmail.com</a>.
+For any questions, suggestions, or issues with the code, please contact <a>rheasukthanker@gmail.com</a>.
 
 
 
