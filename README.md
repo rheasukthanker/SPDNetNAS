@@ -35,7 +35,8 @@ pip install -r requirements.txt
 ## 2. Preparation<a name="Prepration"></a>
 
 ### 2.1. Directories<a name="Directories"></a>
-Our code is based upon a <b> DARTS </b> style implementation. The code for darts i available here <a href=https://github.com/quark0/darts> darts</a>
+Our code is based upon a <b> DARTS </b> style implementation. The code for darts is available here <a href=https://github.com/quark0/darts> darts</a>. Further we follow <a href=https://proceedings.neurips.cc/paper/2019/file/6e69ebbfad976d4637bb4b39de261bf7-Supplemental.zip)> SPDNetBN </a> for implementation of the batch normalization layers, 
+
 The root directory contains the models and the training files. 
 
 The root folder contains a folder called <b> data </b> where all the datasets are saved. The datasets can be downloaded from the links below. 
