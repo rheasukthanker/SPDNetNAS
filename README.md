@@ -54,8 +54,8 @@ We use the Radar and HDM05 datasets directly from the <a href="https://proceedin
 <ul>
     <li><a href="https://drive.google.com/file/d/1Wk4Ie8S164t7n5PFzAnlVYPwjjCDG-p1/view?usp=sharing">RADAR</a>: This dataset’s synthetic setting is composed of radar signals distributed into 3 classes, where each signal is split into windows of length 20, resulting in a 20x20 covariance matrix for each window. </li>
     <li><a href="https://drive.google.com/file/d/1WtbpuKuB3vwp4vtfTWvJi05hBkfSvNSu/view?usp=sharing">HDM05</a>: The dataset has 2083 SPD matrices distributed amongst  117 action classes</li>
-    <li><a href="https://drive.google.com/file/d/1oQuom9dGKpFNhBSj1HEyIZ-0VPtCT_Vo/view">AFEW</a>:This dataset has 1345 videos
-of facial expressions classified into 7 distinct classes i.e. angry, fear, disgust, surprise, neutral, happy and sad</li>
+    <li><b>AFEW</b>:This dataset has 1345 videos
+of facial expressions classified into 7 distinct classes i.e. angry, fear, disgust, surprise, neutral, happy and sad. You can get the AFEW dataset by ask the official organizer: <ref>shreya.ghosh@iitrpr.ac.in</ref> and <ref>emotiw2014@gmail.com</ref> . Unzip the dataset and put it in the <b>data/<b> folder </li>
 </ul>
 
 Note the <b>data/</b> folder contains all the datsets and is placed in the root folder.
