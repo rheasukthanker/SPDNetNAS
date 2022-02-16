@@ -62,7 +62,7 @@ of facial expressions classified into 7 distinct classes i.e. angry, fear, disgu
 Note the <b>data/</b> folder contains all the datsets and is placed in the root folder.
 
 
-## 3. Training<a name="Training"></a>
+## 3. Training and Test <a name="Training"></a>
 ### 3.1. Launch the Training<a name="launch"></a>
 To launch the search followed by training and evaluation for the Radar datset:
 
@@ -76,7 +76,7 @@ To launch the search followed by training and evaluation for the HDM05 datset:
 python -u train_spd_search_hdm05_sparsemax.py --unrolled --epochs 300 "$@"
 python -u train_spd_hdm05.py --arch hdm05_sparsemax "$@"
 ```
-For the afew dataset we directly transfer the searched architectures from Radar and HDMO5 datasets. Launch the training and evaluation using the command below:
+For the afew dataset we directly transfer the searched architectures from Radar and HDMO5 datasets. Launch the **training and evaluation** using the command below:
 ```python
 python -u train_spd_afew.py --arch radar_sparsemax "$@"
 python -u train_spd_afew.py --arch hdm05_sparsemax "$@"
