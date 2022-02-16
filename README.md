@@ -62,7 +62,7 @@ of facial expressions classified into 7 distinct classes i.e. angry, fear, disgu
 Note the <b>data/</b> folder contains all the datsets and is placed in the root folder.
 
 
-## 3. Training and Test <a name="Training"></a>
+## 3. Training and Eavaluation <a name="Training"></a>
 To launch the search followed by training and evaluation for the Radar datset:
 
 ```python
