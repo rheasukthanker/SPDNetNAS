@@ -63,7 +63,6 @@ Note the <b>data/</b> folder contains all the datsets and is placed in the root 
 
 
 ## 3. Training and Test <a name="Training"></a>
-### 3.1. Launch the Training<a name="launch"></a>
 To launch the search followed by training and evaluation for the Radar datset:
 
 ```python
