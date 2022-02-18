@@ -98,7 +98,7 @@ python -u train_spd_afew.py --arch hdm05_sparsemax "$@"
 
 ![Convergence](images/convergence_curves.png)
 ## 5. Contact<a name="Contact"></a>
-For any questions, suggestions, or issues with the code, please contact <a>rheasukthanker@gmail.com</a>.
+For any questions, suggestions, or issues with the code, please contact <a>rheasukthanker@gmail.com</a> and <a>zzhiwu.huang@gmail.com</a>.
 
 
 
